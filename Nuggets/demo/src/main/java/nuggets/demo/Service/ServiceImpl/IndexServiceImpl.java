@@ -16,7 +16,7 @@ public class IndexServiceImpl implements IndexService {
     private final ProductRepository productRepository;
 
     public List<Product> findAll() {
-        return productRepository.findAll();
+        return productRepository.findAllBy();
     }
 
     public List<Product> getLargeProducts() {

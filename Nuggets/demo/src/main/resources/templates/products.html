@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin_app}" xml:lang="zxx" class="no-js" lang="zxx" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -80,7 +81,7 @@
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
-                id="navbarDropdown"
+                id=""
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
@@ -109,159 +110,46 @@
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
-            <div class="tm-product-table-container">
+            <form class="tm-product-table-container" id="delete-products" th:object="${request}" action="/delete-products" method="post">
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
                     <th scope="col">PRODUCT NAME</th>
-                    <th scope="col">UNIT SOLD</th>
-                    <th scope="col">IN STOCK</th>
-                    <th scope="col">EXPIRE DATE</th>
+                    <th scope="col">PRODUCT CATEGORY</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">DISCOUNT</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 1</td>
-                    <td>1,450</td>
-                    <td>550</td>
-                    <td>28 March 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 2</td>
-                    <td>1,250</td>
-                    <td>750</td>
-                    <td>21 March 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 3</td>
-                    <td>1,100</td>
-                    <td>900</td>
-                    <td>18 Feb 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 4</td>
-                    <td>1,400</td>
-                    <td>600</td>
-                    <td>24 Feb 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 5</td>
-                    <td>1,800</td>
-                    <td>200</td>
-                    <td>22 Feb 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 6</td>
-                    <td>1,000</td>
-                    <td>1,000</td>
-                    <td>20 Feb 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 7</td>
-                    <td>500</td>
-                    <td>100</td>
-                    <td>10 Feb 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 8</td>
-                    <td>1,000</td>
-                    <td>600</td>
-                    <td>08 Feb 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 9</td>
-                    <td>1,200</td>
-                    <td>800</td>
-                    <td>24 Jan 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 10</td>
-                    <td>1,600</td>
-                    <td>400</td>
-                    <td>22 Jan 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lorem Ipsum Product 11</td>
-                    <td>2,000</td>
-                    <td>400</td>
-                    <td>21 Jan 2019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  <th:block th:each="product : ${products}">
+                    <tr>
+                      <input type="hidden" id="hidden_check"/>
+                      <th scope="row"><input type="checkbox"
+                                             th:id="'product-checkbox-' + ${product.productId}"
+                                             th:value="${product.productId}"/>
+<!--                                             th:field="${request.selectedProduct[__${productStat.index}__]}"-->
+                      </th>
+                      <td class="tm-product-name" id="product-name" th:text="${product.name}" th:onclick="|editProduct(${product.productId})|"></td>
+                      <td th:text="${product.categoryName}"></td>
+                      <td th:text="${product.price}"></td>
+                      <td th:text="${product.discount}"></td>
+                      <td>
+                        <a class="tm-product-delete-link" th:onclick="|deleteProduct(${product.productId})|">
+                          <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </th:block>
                 </tbody>
               </table>
-            </div>
+            </form>
             <!-- table container -->
             <a
               href="add-product.html"
               class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
-            <button class="btn btn-primary btn-block text-uppercase">
+            <button class="btn btn-primary btn-block text-uppercase" onclick="deleteProducts()">
               Delete selected products
             </button>
           </div>
@@ -272,94 +160,16 @@
             <div class="tm-product-table-container">
               <table class="table tm-table-small tm-product-table">
                 <tbody>
-                  <tr>
-                    <td class="tm-product-name">Product Category 1</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 2</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 3</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 4</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 5</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 6</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 7</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 8</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 9</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 10</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="tm-product-name">Product Category 11</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  <th:block th:each="category : ${categories}">
+                    <tr>
+                      <td class="tm-product-name" th:text="${category.name}"></td>
+                      <td class="text-center">
+                        <a href="#" class="tm-product-delete-link">
+                          <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </th:block>
                 </tbody>
               </table>
             </div>
@@ -385,12 +195,42 @@
     <!-- https://jquery.com/download/ -->
     <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
-    <script>
-      $(function() {
-        $(".tm-product-name").on("click", function() {
-          window.location.href = "edit-product.html";
-        });
-      });
+    <script type="text/javascript" th:inline="javascript">
+      function editProduct(productId) {
+        window.location.href = "edit-product.html?product_id=" + productId;
+      }
+
+      function deleteProducts() {
+
+        if (confirm("Are you sure you want to delete the selected?") === true) {
+          let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+          let checkedList = Array.prototype.slice.call(checkboxes).filter(x => x.checked);
+          if (checkedList.length === 0) {
+            alert("Please select at least one product");
+            return false;
+          }
+
+          for (let i = 0; i<checkedList.length; i++) {
+            let checkedHidden = document.createElement("input");
+            checkedHidden.type = 'hidden';
+            checkedHidden.name = 'selectedProduct[' + i + ']';
+            checkedHidden.value = checkedList[i].value;
+            document.getElementById('hidden_check').append(checkedHidden);
+          }
+
+          $('#delete-products').submit();
+        } else {
+          return false;
+        }
+      }
+
+      function deleteProduct(productId) {
+        if (confirm("Are you sure you want to delete this product?") === true) {
+          window.location.href = "delete-product?product_id=" + productId;
+        } else {
+          return false;
+        }
+      }
     </script>
   </body>
 </html>

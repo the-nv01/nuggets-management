@@ -246,14 +246,4 @@ public class InitViewController {
         return new ModelAndView("admin-page");
     }
 
-    @GetMapping("/edit-product.html")
-    public ModelAndView editProduct() {
-        return new ModelAndView("edit-product");
-    }
-
-    @GetMapping("/products.html")
-    public ModelAndView products() {
-        return new ModelAndView("products");
-    }
-
 }
