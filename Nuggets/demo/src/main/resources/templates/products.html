@@ -129,11 +129,10 @@
                       <th scope="row"><input type="checkbox"
                                              th:id="'product-checkbox-' + ${product.productId}"
                                              th:value="${product.productId}"/>
-<!--                                             th:field="${request.selectedProduct[__${productStat.index}__]}"-->
                       </th>
                       <td class="tm-product-name" id="product-name" th:text="${product.name}" th:onclick="|editProduct(${product.productId})|"></td>
                       <td th:text="${product.categoryName}"></td>
-                      <td th:text="${product.price}"></td>
+                      <td th:text="'$' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"></td>
                       <td th:text="${product.discount}"></td>
                       <td>
                         <a class="tm-product-delete-link" th:onclick="|deleteProduct(${product.productId})|">
@@ -201,27 +200,30 @@
       }
 
       function deleteProducts() {
+        jQuery(document).ready(function ($) {
 
-        if (confirm("Are you sure you want to delete the selected?") === true) {
-          let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-          let checkedList = Array.prototype.slice.call(checkboxes).filter(x => x.checked);
-          if (checkedList.length === 0) {
-            alert("Please select at least one product");
+          if (confirm("Are you sure you want to delete the selected?") === true) {
+            let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let checkedList = Array.prototype.slice.call(checkboxes).filter(x => x.checked);
+            if (checkedList.length === 0) {
+              alert("Please select at least one product");
+              return false;
+            }
+
+            for (let i = 0; i < checkedList.length; i++) {
+              let checkedHidden = document.createElement("input");
+              checkedHidden.type = 'hidden';
+              checkedHidden.name = 'selectedProduct[' + i + ']';
+              checkedHidden.value = checkedList[i].value;
+              document.getElementById('hidden_check').append(checkedHidden);
+            }
+
+            debugger
+            $('#delete-products').submit();
+          } else {
             return false;
           }
-
-          for (let i = 0; i<checkedList.length; i++) {
-            let checkedHidden = document.createElement("input");
-            checkedHidden.type = 'hidden';
-            checkedHidden.name = 'selectedProduct[' + i + ']';
-            checkedHidden.value = checkedList[i].value;
-            document.getElementById('hidden_check').append(checkedHidden);
-          }
-
-          $('#delete-products').submit();
-        } else {
-          return false;
-        }
+        });
       }
 
       function deleteProduct(productId) {

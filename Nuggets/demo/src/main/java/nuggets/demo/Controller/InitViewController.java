@@ -166,11 +166,6 @@ public class InitViewController {
         return new ModelAndView("shop-right-sidebar");
     }
 
-    @GetMapping("/shopping-cart.html")
-    public ModelAndView shoppingCart() {
-        return new ModelAndView("shopping-cart");
-    }
-
     @GetMapping("/single-product.html")
     public ModelAndView singleProduct() {
         return new ModelAndView("single-product");
@@ -224,11 +219,6 @@ public class InitViewController {
     @GetMapping("/single-product-tab-style-top.html")
     public ModelAndView singleProductTabStyleTop() {
         return new ModelAndView("single-product-tab-style-top");
-    }
-
-    @GetMapping("/wishlist.html")
-    public ModelAndView wishList() {
-        return new ModelAndView("wishlist");
     }
 
     @GetMapping("/accounts.html")

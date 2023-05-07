@@ -541,12 +541,12 @@
                                                         <h4><a class="product_name" href="single-product.html" th:text="${product.name}"></a></h4>
                                                         <div class="price-box">
                                                             <th:block th:if="${product.discount > 0}">
-                                                                <span class="new-price new-price-2" th:text="${product.newPrice}">$71.80</span>
-                                                                <span class="old-price" th:text="${product.price}">$77.22</span>
+                                                                <span class="new-price new-price-2" th:text="'$' + ${#numbers.formatDecimal(product.newPrice, 0, 'COMMA', 2, 'POINT')}"></span>
+                                                                <span class="old-price" th:text="'$' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}">$77.22</span>
                                                                 <span class="discount-percentage" th:text="'-' + ${product.discount} + '%'">-7%</span>
                                                             </th:block>
                                                             <th:block th:unless="${product.discount > 0}">
-                                                                <span class="new-price" th:text="${product.newPrice}">$71.80</span>
+                                                                <span class="new-price" th:text="'$' + ${#numbers.formatDecimal(product.newPrice, 0, 'COMMA', 2, 'POINT')}">$71.80</span>
                                                             </th:block>
                                                         </div>
                                                     </div>

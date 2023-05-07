@@ -1,5 +1,6 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin_app}" xml:lang="zxx" class="no-js" lang="zxx" dir="ltr">
     
 <!-- wishlist31:27-->
 <head>
@@ -42,6 +43,14 @@
         <link rel="stylesheet" href="css/responsive.css">
         <!-- Modernizr js -->
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <style>
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+            background: red !important;
+        }
+    </style>
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -453,30 +462,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                                <td class="li-product-thumbnail"><a href="#"><img src="images/wishlist-thumb/1.jpg" alt=""></a></td>
-                                                <td class="li-product-name"><a href="#">Giro Civilia</a></td>
-                                                <td class="li-product-price"><span class="amount">$23.39</span></td>
-                                                <td class="li-product-stock-status"><span class="in-stock">in stock</span></td>
-                                                <td class="li-product-add-cart"><a href="#">add to cart</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                                <td class="li-product-thumbnail"><a href="#"><img src="images/wishlist-thumb/2.jpg" alt=""></a></td>
-                                                <td class="li-product-name"><a href="#">Pro Bike Shoes</a></td>
-                                                <td class="li-product-price"><span class="amount">$30.50</span></td>
-                                                <td class="li-product-stock-status"><span class="in-stock">in stock</span></td>
-                                                <td class="li-product-add-cart"><a href="#">add to cart</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                                <td class="li-product-thumbnail"><a href="#"><img src="images/wishlist-thumb/3.jpg" alt=""></a></td>
-                                                <td class="li-product-name"><a href="#">Nero Urban Shoes</a></td>
-                                                <td class="li-product-price"><span class="amount">$40.19</span></td>
-                                                <td class="li-product-stock-status"><span class="out-stock">out stock</span></td>
-                                                <td class="li-product-add-cart"><a href="#">add to cart</a></td>
-                                            </tr>
+                                            <th:block th:each="product : ${wishList}">
+                                                <tr>
+                                                    <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                                    <td class="li-product-thumbnail"><a href="#"><img th:src="${product.image}" alt=""></a></td>
+                                                    <td class="li-product-name"><a href="#" th:text="${product.name}"></a></td>
+                                                    <td class="li-product-price"><span class="amount" th:text="'$' + ${#numbers.formatDecimal(product.newPrice, 0, 'COMMA', 2, 'POINT')}"></span></td>
+                                                    <td class="li-product-stock-status"><span th:class="${product.quantity} > 0 ? 'in-stock' : 'out-stock'" th:text="${product.quantity} > 0 ? 'in stock' : 'out stock'"></span></td>
+                                                    <td class="li-product-add-cart"><a href="#" th:classappend="${product.quantity} <= 0 ? 'disabled' : ''" th:text="${product.quantity} <= 0 ? 'sold out' : 'add to cart'"></a></td>
+                                                </tr>
+                                            </th:block>
                                         </tbody>
                                     </table>
                                 </div>

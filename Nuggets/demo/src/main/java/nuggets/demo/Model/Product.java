@@ -8,9 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,17 +28,22 @@ public class Product {
     private Integer categoryId;
 
     @Column
-    private String detail;
-
-    @Column
     private Double price;
 
     @Column
     private Integer discount;
 
+    @Column
+    private Integer quantity;
+
+    @Column
+    private String detail;
+
     private Double newPrice;
 
     private String categoryName;
+
+    private Integer quantityProductCart;
 
     public Double getNewPrice() {
         return price * (100-discount)/100;

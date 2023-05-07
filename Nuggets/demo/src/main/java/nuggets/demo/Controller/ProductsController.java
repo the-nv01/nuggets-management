@@ -6,20 +6,17 @@ import nuggets.demo.Model.Product;
 import nuggets.demo.Model.ProductDTO;
 import nuggets.demo.Repository.CategoryRepository;
 import nuggets.demo.Repository.ProductRepository;
-import nuggets.demo.Service.IndexService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("")
 @RequiredArgsConstructor
-public class AdminController {
+public class ProductsController {
     private final ProductRepository productRepository;
 
     private final CategoryRepository categoryRepository;

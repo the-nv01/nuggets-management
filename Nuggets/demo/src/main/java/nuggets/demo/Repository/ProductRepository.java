@@ -23,5 +23,5 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     Product save(Product product);
 
-    Product deleteProductByProductId(Integer productId);
+    Integer deleteProductByProductId(Integer productId);
 }
