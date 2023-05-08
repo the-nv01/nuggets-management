@@ -10,5 +10,5 @@ import java.util.List;
 public interface WishListRepository extends CrudRepository<WishList, Integer> {
     List<WishList> findAllByUsername(String username);
 
-    WishList deleteWishListByUsernameAndProductId (String username, Integer productId);
+    Integer deleteWishListByUsernameAndProductId (String username, Integer productId);
 }

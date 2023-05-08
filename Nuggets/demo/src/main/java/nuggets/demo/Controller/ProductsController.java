@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,12 +38,14 @@ public class ProductsController {
     }
 
     @GetMapping("/delete-product")
+    @Transactional
     public ModelAndView deleteProduct(@RequestParam (value = "product_id") Integer productId) {
         productRepository.deleteProductByProductId(productId);
         return new ModelAndView("redirect:/products.html");
     }
 
     @PostMapping("/delete-products")
+    @Transactional
     public ModelAndView deleteProducts(@ModelAttribute ProductDTO request) {
         request.getSelectedProduct().stream()
                 .map(productRepository::deleteProductByProductId);
