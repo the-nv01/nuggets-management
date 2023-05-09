@@ -34,4 +34,7 @@ public class Coupon {
     @Column (name = "reserve_to")
     private String reserveTo;
 
+    public String getCouponCode() {
+        return couponCode.toUpperCase();
+    }
 }

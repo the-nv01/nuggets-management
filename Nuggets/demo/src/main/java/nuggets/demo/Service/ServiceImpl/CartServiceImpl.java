@@ -8,6 +8,7 @@ import nuggets.demo.Model.User;
 import nuggets.demo.Repository.CartRepository;
 import nuggets.demo.Repository.ProductRepository;
 import nuggets.demo.Repository.UserRepository;
+import nuggets.demo.Repository.WishListRepository;
 import nuggets.demo.Service.CartService;
 import nuggets.demo.Session.SessionOperatorDetails;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class CartServiceImpl implements CartService {
 
     private final UserRepository userRepository;
 
+    private final WishListRepository wishListRepository;
+
     private final ProductRepository productRepository;
 
     private final CartRepository cartRepository;
@@ -34,6 +37,8 @@ public class CartServiceImpl implements CartService {
     public List<Product> getProductsByUser() {
         // default session
         sessionOperatorDetails.setForm("account", userRepository.getUserByUsername("the"));
+        sessionOperatorDetails.setForm("memberWishlist", wishListRepository.findAllByUsername("the"));
+        sessionOperatorDetails.setForm("memberCarts", cartRepository.findAllByUsername("the"));
 
         User account = sessionOperatorDetails.getForm("account", User.class);
         List<Cart> carts = cartRepository.findAllByUsername(account.getUsername());

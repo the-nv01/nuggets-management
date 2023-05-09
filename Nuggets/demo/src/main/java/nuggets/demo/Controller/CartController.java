@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,6 +26,8 @@ public class CartController {
 
     private final CartService cartService;
 
+    private final SessionOperatorDetails sessionOperatorDetails;
+
     @GetMapping("/shopping-cart.html")
     public ModelAndView initView(@RequestParam (value = "coupon_code", required = false) String couponCode) {
         ModelAndView modelAndView = new ModelAndView("shopping-cart");
@@ -33,7 +36,10 @@ public class CartController {
 
         modelAndView.addObject("products", productsByUser);
         modelAndView.addObject("carts", new CartDTO());
+        modelAndView.addObject("memberWishlist", sessionOperatorDetails.getForm("memberWishlist", ArrayList.class));
+        modelAndView.addObject("memberCarts", sessionOperatorDetails.getForm("memberCarts", ArrayList.class));
         modelAndView.addObject("subtotal", calTotalPrice(productsByUser));
+        modelAndView.addObject("now", LocalDate.now().toString());
 
         Integer discount = 0;
         String alertCoupon = "";
@@ -69,6 +75,10 @@ public class CartController {
         return new ModelAndView("redirect:/shopping-cart.html");
     }
 
+//    @PostMapping("/create-payment")
+//    public ModelAndView payment() {
+//
+//    }
 
     public Double calTotalPrice(List<Product> products) {
         double sum = 0;
