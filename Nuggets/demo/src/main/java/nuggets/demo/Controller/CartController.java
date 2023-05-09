@@ -1,17 +1,17 @@
 package nuggets.demo.Controller;
 
 import lombok.RequiredArgsConstructor;
-import nuggets.demo.Model.Cart;
-import nuggets.demo.Model.CartDTO;
-import nuggets.demo.Model.Product;
-import nuggets.demo.Model.User;
+import nuggets.demo.Model.*;
 import nuggets.demo.Repository.CartRepository;
+import nuggets.demo.Repository.CouponRepository;
 import nuggets.demo.Service.CartService;
 import nuggets.demo.Session.SessionOperatorDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -20,6 +20,8 @@ import java.util.List;
 public class CartController {
 
     private final CartRepository cartRepository;
+
+    private final CouponRepository couponRepository;
 
     private final CartService cartService;
 
@@ -33,9 +35,22 @@ public class CartController {
         modelAndView.addObject("carts", new CartDTO());
         modelAndView.addObject("subtotal", calTotalPrice(productsByUser));
 
-        //set default discount
-        Integer discount = 10;
+        Integer discount = 0;
+        String alertCoupon = "";
+        if (!ObjectUtils.isEmpty(couponCode)) {
+            Coupon coupon = couponRepository.findCouponByCouponCode(couponCode);
+            if (!ObjectUtils.isEmpty(coupon)) {
+                LocalDate now = LocalDate.now();
+                LocalDate reserveFrom = LocalDate.parse(coupon.getReserveFrom());
+                LocalDate reserveTo = LocalDate.parse(coupon.getReserveTo());
+                discount = reserveFrom.isAfter(now) || reserveTo.isBefore(now) ? 0 : coupon.getDiscount();
+                if (discount == 0) alertCoupon = "The coupon does not work.";
+            } else {
+                alertCoupon = "The coupon does not exist.";
+            }
+        }
 
+        modelAndView.addObject("alertCoupon", alertCoupon);
         modelAndView.addObject("discount", discount);
         modelAndView.addObject("totalPrice", calTotalPrice(productsByUser)*(100-discount)/100);
         return modelAndView;

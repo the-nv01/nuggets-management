@@ -482,13 +482,14 @@
                                         <div class="coupon-all">
                                             <div class="coupon">
                                                 <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
-                                                <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
+                                                <input class="button" name="apply_coupon" value="Apply coupon" type="button" onclick="applyCoupon()">
                                             </div>
                                             <div class="coupon2">
                                                 <input class="button" name="update_cart" value="Update cart" type="button" onclick="updateCart()">
                                             </div>
                                         </div>
                                     </div>
+                                    <span class="col-12" th:if="${alertCoupon} != ''" th:text="${alertCoupon}" style="color: red"></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5 ml-auto">
@@ -785,7 +786,7 @@
             function plusQuantity(productQuantity, productId, price, discount) {
                 jQuery(document).ready(function ($) {
                     let quantityProduct = parseInt(document.getElementById('quantity-product[' + productId + ']').value) + 1;
-                    if (quantityProduct === productQuantity) {
+                    if (quantityProduct >= productQuantity) {
                         document.getElementById('plus-quantity[' + productId + ']').style.visibility = "hidden";
                     } else {
                         document.getElementById('plus-quantity[' + productId + ']').style.visibility = "visible";
@@ -851,6 +852,12 @@
                 }
 
                 $('#update-cart').submit();
+            }
+
+            function applyCoupon() {
+                jQuery(document).ready(function ($) {
+                    window.location.href = "shopping-cart.html?coupon_code=" + $('#coupon_code').val();
+                });
             }
         </script>
     </body>

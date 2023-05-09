@@ -166,11 +166,6 @@ public class InitViewController {
         return new ModelAndView("shop-right-sidebar");
     }
 
-    @GetMapping("/single-product.html")
-    public ModelAndView singleProduct() {
-        return new ModelAndView("single-product");
-    }
-
     @GetMapping("/single-product-affiliate.html")
     public ModelAndView singleProductAffiliate() {
         return new ModelAndView("single-product-affiliate");
