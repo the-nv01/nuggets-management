@@ -1742,7 +1742,7 @@ textarea:focus {
 }
 .hb-menu nav > ul > li {
 		display: inline-block;
-		position: relative;
+		/*position: relative;*/
 		padding-right: 40px;
 		transition: all 0.3s ease-in-out;
 }
@@ -1768,16 +1768,16 @@ textarea:focus {
 .hb-menu nav > ul > li:hover > a::after {
 		color: #ffffff;
 }
-.hb-menu nav > ul > li > a::after {
-	content: "\f107";
-	position: absolute;
-	top: 8px;
-	right: 15px;
-	font-family: fontawesome;
-	font-size: 18px;
-	transition: all 0.3s ease-in-out;
-	color: #242424;
-}
+/*.hb-menu nav > ul > li > a::after {*/
+/*	content: "\f107";*/
+/*	position: absolute;*/
+/*	top: 8px;*/
+/*	right: 15px;*/
+/*	font-family: fontawesome;*/
+/*	font-size: 18px;*/
+/*	transition: all 0.3s ease-in-out;*/
+/*	color: #242424;*/
+/*}*/
 .hb-menu nav > ul > li:nth-child(n+5) > a::after {
 	content: none;
 }

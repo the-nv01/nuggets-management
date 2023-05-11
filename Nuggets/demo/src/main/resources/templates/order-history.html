@@ -1,11 +1,12 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin_app}" xml:lang="zxx" class="no-js" lang="zxx" dir="ltr">
     
-<!-- compare32:03-->
+<!-- wishlist31:27-->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Compare || limupa - Digital Products Store eCommerce Bootstrap 4 Template</title>
+        <title>History || limupa - Digital Products Store eCommerce Bootstrap 4 Template</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -42,6 +43,14 @@
         <link rel="stylesheet" href="css/responsive.css">
         <!-- Modernizr js -->
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <style>
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+            background: red !important;
+        }
+    </style>
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -73,9 +82,8 @@
                                             <div class="ht-setting-trigger"><span>Setting</span></div>
                                             <div class="setting ht-setting">
                                                 <ul class="ht-setting-list">
-                                                    <li><a href="login-register.html">My Account</a></li>
                                                     <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="login-register.html">Sign In</a></li>
+                                                    <li><a href="login-register.html" th:text="${isLogin} ? 'Sign Out' : 'Sign In'"></a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -86,7 +94,7 @@
                                             <div class="ht-currency-trigger"><span>USD $</span></div>
                                             <div class="currency ht-currency">
                                                 <ul class="ht-setting-list">
-                                                    <li><a href="#">EUR €</a></li>
+                                                    <li><a href="#">VNĐ ₫</a></li>
                                                     <li class="active"><a href="#">USD $</a></li>
                                                 </ul>
                                             </div>
@@ -119,7 +127,7 @@
                             <!-- Begin Header Logo Area -->
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
-                                    <a href="index.html">
+                                    <a href="index-2.html">
                                         <img src="images/menu/logo/1.jpg" alt="">
                                     </a>
                                 </div>
@@ -128,80 +136,14 @@
                             <!-- Begin Header Middle Right Area -->
                             <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
                                 <!-- Begin Header Middle Searchbox Area -->
-                                <form action="#" class="hm-searchbox">
-                                    <select class="nice-select select-search-category">
-                                        <option value="0">All</option>                         
-                                        <option value="10">Laptops</option>                     
-                                        <option value="17">- -  Prime Video</option>                    
-                                        <option value="20">- - - -  All Videos</option>                     
-                                        <option value="21">- - - -  Blouses</option>                        
-                                        <option value="22">- - - -  Evening Dresses</option>                
-                                        <option value="23">- - - -  Summer Dresses</option>                     
-                                        <option value="24">- - - -  T-shirts</option>                       
-                                        <option value="25">- - - -  Rent or Buy</option>                        
-                                        <option value="26">- - - -  Your Watchlist</option>                     
-                                        <option value="27">- - - -  Watch Anywhere</option>                     
-                                        <option value="28">- - - -  Getting Started</option>         
-                                        <option value="18">- - - -  Computers</option>                      
-                                        <option value="29">- - - -  More to Explore</option>         
-                                        <option value="30">- - - -  TV &amp; Video</option>                     
-                                        <option value="31">- - - -  Audio &amp; Theater</option>               
-                                        <option value="32">- - - -  Camera, Photo </option>
-                                        <option value="33">- - - -  Cell Phones</option>                        
-                                        <option value="34">- - - -  Headphones</option>                     
-                                        <option value="35">- - - -  Video Games</option>                        
-                                        <option value="36">- - - -  Wireless Speakers</option>            
-                                        <option value="19">- - - -  Electronics</option>                        
-                                        <option value="37">- - - -  Amazon Home</option>                        
-                                        <option value="38">- - - -  Kitchen &amp; Dining</option>           
-                                        <option value="39">- - - -  Furniture</option>                      
-                                        <option value="40">- - - -  Bed &amp; Bath</option>                     
-                                        <option value="41">- - - -  Appliances</option>                 
-                                        <option value="11">TV &amp; Audio</option>                  
-                                        <option value="42">- -  SamSung</option>                        
-                                        <option value="45">- - - -  Office</option>                     
-                                        <option value="47">- - - -  Gaming</option>                 
-                                        <option value="48">- - - -  Chromebook</option>                     
-                                        <option value="49">- - - -  Refurbished</option>                    
-                                        <option value="50">- - - -  Touchscreen</option>                        
-                                        <option value="51">- - - -  Ultrabooks</option>                     
-                                        <option value="52">- - - -  Blouses</option>                        
-                                        <option value="43">- -  Toshiba</option>                        
-                                        <option value="53">- - - -  Hard Drives</option>                        
-                                        <option value="54">- - - -  Graphic Cards</option>                      
-                                        <option value="55">- - - -  Processors (CPU)</option>  
-                                        <option value="56">- - - -  Memory</option>                     
-                                        <option value="57">- - - -  Motherboards</option>                       
-                                        <option value="58">- - - -  Fans &amp; Cooling</option> 
-                                        <option value="59">- - - -  CD/DVD Drives</option>                      
-                                        <option value="44">- -  Sony Bravia</option>                        
-                                        <option value="60">- - - -  Sound Cards</option>                        
-                                        <option value="61">- - - -  Cases &amp; Towers</option>   
-                                        <option value="62">- - - -  Casual Dresses</option>                     
-                                        <option value="63">- - - -  Evening Dresses</option>       
-                                        <option value="64">- - - -  T-shirts</option>                       
-                                        <option value="65">- - - -  Tops</option>                                 
-                                        <option value="12">Smartphone</option>                  
-                                        <option value="66">- -  Camera Accessories</option>                     
-                                        <option value="68">- - - -  Octa Core</option>                      
-                                        <option value="69">- - - -  Quad Core</option>                  
-                                        <option value="70">- - - -  Dual Core</option>                      
-                                        <option value="71">- - - -  7.0 Screen</option>                     
-                                        <option value="72">- - - -  9.0 Screen</option>                     
-                                        <option value="73">- - - -  Bags &amp; Cases</option>                   
-                                        <option value="67">- -  Camcorders</option>                     
-                                        <option value="74">- - - -  Batteries</option>                      
-                                        <option value="75">- - - -  Microphones</option>                        
-                                        <option value="76">- - - -  Stabilizers</option>                        
-                                        <option value="77">- - - -  Video Tapes</option>                        
-                                        <option value="78">- - - -  Memory Card Readers</option> 
-                                        <option value="79">- - - -  Tripods</option>           
-                                        <option value="13">Cameras</option>                          
-                                        <option value="14">headphone</option>                                
-                                        <option value="15">Smartwatch</option>                           
-                                        <option value="16">Accessories</option>
+                                <form action="/shop-list-left-sidebar.html" method="GET" class="hm-searchbox" th:object="${searchRequest}">
+                                    <select class="nice-select select-search-category" th:field="${searchRequest.categoryId}">
+                                        <option value="0">All</option>
+                                        <th:block th:each="category : ${categories}">
+                                            <option th:value="${category.categoryId}" th:text="${category.name}"></option>
+                                        </th:block>
                                     </select>
-                                    <input type="text" placeholder="Enter your search key ...">
+                                    <input type="text" placeholder="Enter your search key ..." th:field="${searchRequest.productName}">
                                     <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
                                 </form>
                                 <!-- Header Middle Searchbox Area End Here -->
@@ -211,7 +153,7 @@
                                         <!-- Begin Header Middle Wishlist Area -->
                                         <li class="hm-wishlist">
                                             <a href="wishlist.html">
-                                                <span class="cart-item-count wishlist-item-count">0</span>
+                                                <span class="cart-item-count wishlist-item-count" th:text="${#lists.size(memberWishlist)}"></span>
                                                 <i class="fa fa-heart-o"></i>
                                             </a>
                                         </li>
@@ -220,42 +162,36 @@
                                         <li class="hm-minicart">
                                             <div class="hm-minicart-trigger">
                                                 <span class="item-icon"></span>
-                                                <span class="item-text">£80.00
-                                                    <span class="cart-item-count">2</span>
+                                                <span class="item-text" th:inline="text">
+                                                    [['$' + ${#numbers.formatDecimal(subtotal, 0, 'COMMA', 2, 'POINT')}]]
+                                                    <span class="cart-item-count" th:text="${#lists.size(productsByUser)}"></span>
                                                 </span>
                                             </div>
                                             <span></span>
                                             <div class="minicart">
                                                 <ul class="minicart-product-list">
-                                                    <li>
-                                                        <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/5.jpg" alt="cart products">
-                                                        </a>
-                                                        <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
-                                                        </div>
-                                                        <button class="close" title="Remove">
-                                                            <i class="fa fa-close"></i>
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/6.jpg" alt="cart products">
-                                                        </a>
-                                                        <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
-                                                        </div>
-                                                        <button class="close" title="Remove">
-                                                            <i class="fa fa-close"></i>
-                                                        </button>
-                                                    </li>
+                                                    <th:block th:each="product : ${productsByUser.subList(0, productsByUser.size()<2 ? productsByUser.size() : 2)}">
+                                                        <li>
+                                                            <a href="single-product.html" class="minicart-product-image">
+                                                                <img th:src="${product.image}" alt="cart products">
+                                                            </a>
+                                                            <div class="minicart-product-details">
+                                                                <h6><a th:href="'single-product.html?product_id=' + ${product.productId}" th:text="${product.name}"></a></h6>
+                                                                <span th:text="'$' + ${#numbers.formatDecimal(product.newPrice, 0, 'COMMA', 2, 'POINT')} + ' × ' + ${product.quantityProductCart}"></span>
+                                                            </div>
+                                                            <button class="close" title="Remove">
+                                                                <i class="fa fa-close"></i>
+                                                            </button>
+                                                        </li>
+                                                    </th:block>
                                                 </ul>
-                                                <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                                <p class="minicart-total">SUBTOTAL: <span th:text="'$' + ${#numbers.formatDecimal(subtotal, 0, 'COMMA', 2, 'POINT')}"></span></p>
                                                 <div class="minicart-button">
                                                     <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
                                                         <span>View Full Cart</span>
+                                                    </a>
+                                                    <a href="order-history.html" class="li-button li-button-fullwidth">
+                                                        <span>View History</span>
                                                     </a>
                                                     <a href="checkout.html" class="li-button li-button-fullwidth">
                                                         <span>Checkout</span>
@@ -282,125 +218,13 @@
                                 <div class="hb-menu">
                                     <nav>
                                         <ul>
-                                            <li class="dropdown-holder"><a href="index.html">Home</a>
-                                                <ul class="hb-dropdown">
-                                                    <li><a href="index.html">Home One</a></li>
-                                                    <li><a href="index-2.html">Home Two</a></li>
-                                                    <li><a href="index-3.html">Home Three</a></li>
-                                                    <li><a href="index-4.html">Home Four</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="catmenu-dropdown megamenu-holder"><a href="shop-left-sidebar.html">Shop</a>
-                                                <ul class="megamenu hb-megamenu">
-                                                    <li><a href="shop-left-sidebar.html">Shop Page Layout</a>
-                                                        <ul>
-                                                            <li><a href="shop-3-column.html">Shop 3 Column</a></li>
-                                                            <li><a href="shop-4-column.html">Shop 4 Column</a></li>
-                                                            <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                                            <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                            <li><a href="shop-list.html">Shop List</a></li>
-                                                            <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                                            <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="single-product-gallery-left.html">Single Product Style</a>
-                                                        <ul>
-                                                            <li><a href="single-product-carousel.html">Single Product Carousel</a></li>
-                                                            <li><a href="single-product-gallery-left.html">Single Product Gallery Left</a></li>
-                                                            <li><a href="single-product-gallery-right.html">Single Product Gallery Right</a></li>
-                                                            <li><a href="single-product-tab-style-top.html">Single Product Tab Style Top</a></li>
-                                                            <li><a href="single-product-tab-style-left.html">Single Product Tab Style Left</a></li>
-                                                            <li><a href="single-product-tab-style-right.html">Single Product Tab Style Right</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="single-product.html">Single Products</a>
-                                                        <ul>
-                                                            <li><a href="single-product.html">Single Product</a></li>
-                                                            <li><a href="single-product-sale.html">Single Product Sale</a></li>
-                                                            <li><a href="single-product-group.html">Single Product Group</a></li>
-                                                            <li><a href="single-product-normal.html">Single Product Normal</a></li>
-                                                            <li><a href="single-product-affiliate.html">Single Product Affiliate</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown-holder"><a href="blog-left-sidebar.html">Blog</a>
-                                                <ul class="hb-dropdown">
-                                                    <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid View</a>
-                                                        <ul class="hb-dropdown hb-sub-dropdown">
-                                                            <li><a href="blog-2-column.html">Blog 2 Column</a></li>
-                                                            <li><a href="blog-3-column.html">Blog 3 Column</a></li>
-                                                            <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
-                                                            <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog List View</a>
-                                                        <ul class="hb-dropdown hb-sub-dropdown">
-                                                            <li><a href="blog-list.html">Blog List</a></li>
-                                                            <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
-                                                            <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog Details</a>
-                                                        <ul class="hb-dropdown hb-sub-dropdown">
-                                                            <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
-                                                            <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="sub-dropdown-holder"><a href="blog-gallery-format.html">Blog Format</a>
-                                                        <ul class="hb-dropdown hb-sub-dropdown">
-                                                            <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
-                                                            <li><a href="blog-video-format.html">Blog Video Format</a></li>
-                                                            <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="catmenu-dropdown megamenu-static-holder"><a href="index.html">Pages</a>
-                                                <ul class="megamenu hb-megamenu">
-                                                    <li><a href="blog-left-sidebar.html">Blog Layouts</a>
-                                                        <ul>
-                                                            <li><a href="blog-2-column.html">Blog 2 Column</a></li>
-                                                            <li><a href="blog-3-column.html">Blog 3 Column</a></li>
-                                                            <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
-                                                            <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
-                                                            <li><a href="blog-list.html">Blog List</a></li>
-                                                            <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
-                                                            <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="blog-details-left-sidebar.html">Blog Details Pages</a>
-                                                        <ul>
-                                                            <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
-                                                            <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-                                                            <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
-                                                            <li><a href="blog-video-format.html">Blog Video Format</a></li>
-                                                            <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="index.html">Other Pages</a>
-                                                        <ul>
-                                                            <li><a href="login-register.html">My Account</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li class="active"><a href="compare.html">Compare</a></li>
-                                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="index.html">Other Pages 2</a>
-                                                        <ul>
-                                                            <li><a href="contact.html">Contact</a></li>
-                                                            <li><a href="about-us.html">About Us</a></li>
-                                                            <li><a href="faq.html">FAQ</a></li>
-                                                            <li><a href="404.html">404 Error</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="index-2.html">Home</a></li>
+                                            <li><a href="shop-3-column.html">Shop</a></li>
+                                            <li><a href="blog-2-column.html">Blog</a></li>
                                             <li><a href="about-us.html">About Us</a></li>
                                             <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="shop-left-sidebar.html">Smartwatch</a></li>
-                                            <li><a href="shop-left-sidebar.html">Accessories</a></li>
+                                            <li><a href="shop-list-left-sidebar.html?category_id=8">Smartwatch</a></li>
+                                            <li><a href="shop-list-left-sidebar.html?category_id=7">Smartphone</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -427,112 +251,69 @@
                 <div class="container">
                     <div class="breadcrumb-content">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active">Compare</li>
+                            <li><a href="index-2.html">Home</a></li>
+                            <li class="active">History</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- Li's Breadcrumb Area End Here -->
-            <!-- Compare Area -->
-            <div class="compare-area pt-60 pb-60">
+            <!--Wishlist Area Strat-->
+            <div class="wishlist-area pt-60 pb-60">
                 <div class="container">
-                    <div class="compare-table table-responsive">
-                        <table class="table table-bordered table-hover mb-0">
-                            <tbody>
-                                <tr>
-                                    <th class="compare-column-titles">Image</th>
-                                    <td class="compare-column-productinfo">
-                                        <div class="compare-pdoduct-image">
-                                            <a href="single-product.html">
-                                                <img src="images/product/large-size/1.jpg" alt="Product Image">
-                                            </a>
-                                            <a href="cart.html" class="ho-button ho-button-sm">
-                                                <span>ADD TO CART</span>
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td class="compare-column-productinfo">
-                                        <div class="compare-pdoduct-image">
-                                            <a href="single-product.html">
-                                                <img src="images/product/large-size/2.jpg" alt="Product Image">
-                                            </a>
-                                            <a href="cart.html" class="ho-button ho-button-sm">
-                                                <span>ADD TO CART</span>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <td>
-                                        <h5 class="compare-product-name"><a href="single-product.html">HP Pavilion</a></h5>
-                                    </td>
-                                    <td>
-                                        <h5 class="compare-product-name"><a href="single-product.html">HP Probook</a></h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Description</th>
-                                    <td>Impressively thin and light, the HP Pavilion G6 empowers users to create,
-                                        connect, and collaborate, using enterprise-class performance</td>
-                                    <td>Impressively thin and light, the HP ProBook 450 G4 empowers users to create,
-                                        connect, and collaborate, using enterprise-class performance</td>
-                                </tr>
-                                <tr>
-                                    <th>Price</th>
-                                    <td>$800</td>
-                                    <td>$1020</td>
-                                </tr>
-                                <tr>
-                                    <th>Color</th>
-                                    <td>Black</td>
-                                    <td>Red</td>
-                                </tr>
-                                <tr>
-                                    <th>Size</th>
-                                    <td>Medium</td>
-                                    <td>Large</td>
-                                </tr>
-                                <tr>
-                                    <th>Stock</th>
-                                    <td>In Stock</td>
-                                    <td>Stock Out</td>
-                                </tr>
-                                <tr>
-                                    <th>Rating</th>
-                                    <td>
-                                        <div class="li-pro-rating li-rattingbox">
-                                            <span><i class="fa fa-star-o"></i></span>
-                                            <span><i class="fa fa-star-o"></i></span>
-                                            <span><i class="fa fa-star-o"></i></span>
-                                            <span><i class="fa fa-star-o li-star"></i></span>
-                                            <span><i class="fa fa-star-o li-star"></i></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="li-pro-rating li-rattingbox">
-                                            <span><i class="fa fa-star-o"></i></span>
-                                            <span><i class="fa fa-star-o"></i></span>
-                                            <span><i class="fa fa-star-o"></i></span>
-                                            <span><i class="fa fa-star-o"></i></span>
-                                            <span><i class="fa fa-star-o li-star"></i></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="row">
+                        <div class="col-12">
+                            <form>
+                                <div class="table-content table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="li-product-price">ORDER NO.</th>
+                                                <th class="li-product-price">LOCATION</th>
+                                                <th class="li-product-price">START DATE</th>
+                                                <th class="li-product-price">NOTE</th>
+                                                <th class="li-product-price">STATUS</th>
+                                                <th class="li-product-add-cart"></th>
+                                                <th class="li-product-add-cart"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <th:block th:each="orderMember : ${orderMembers}">
+                                                <tr>
+                                                    <td class="li-product-price"><span class="amount" th:text="${orderMember.orderId}"></span></td>
+                                                    <td class="li-product-price"><span class="amount" th:text="${orderMember.apartment}+' '+${orderMember.company}+' '+${orderMember.state}+' '+${orderMember.city}+' '+${orderMember.country}"></span></td>
+                                                    <td class="li-product-price"><span class="amount" th:text="${orderMember.date}"></span></td>
+                                                    <td class="li-product-price"><span class="amount" th:text="${orderMember.note}"></span></td>
+                                                    <td th:switch="${orderMember.orderStatus}">
+                                                        <th:block th:case="0"><div class="tm-status-circle pending">
+                                                        </div>Pending</th:block>
+                                                        <th:block th:case="1"><div class="tm-status-circle moving">
+                                                        </div>Moving</th:block>
+                                                        <th:block th:case="2"><div class="tm-status-circle success">
+                                                        </div>Success</th:block>
+                                                        <th:block th:case="3"><div class="tm-status-circle cancelled">
+                                                        </div>Cancel</th:block>
+                                                    </td>
+                                                    <td><button id="received" class="btn btn-primary btn-block text-uppercase" th:onclick="|receiveOrder(${orderMember.orderId})|" th:if="${orderMember.orderStatus} == 1">RECEIVED</button></td>
+                                                    <td><button id="cancel" class="btn btn-primary btn-block text-uppercase" th:onclick="|cancelOrder(${orderMember.orderId})|" th:if="${orderMember.orderStatus} == 0 OR ${orderMember.orderStatus} == 1">CANCEL</button></td>
+                                                </tr>
+                                            </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!--// Compare Area -->
+            <!--Wishlist Area End-->
             <!-- Begin Footer Area -->
             <div class="footer">
                 <!-- Begin Footer Static Top Area -->
                 <div class="footer-static-top">
                     <div class="container">
                         <!-- Begin Footer Shipping Area -->
-                        <div class="footer-shipping pt-60 pb-55 pb-xs-25">
+                        <div class="footer-shipping pt-60 pb-25">
                             <div class="row">
                                 <!-- Begin Li's Shipping Inner Box Area -->
                                 <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
@@ -607,8 +388,7 @@
                                     </div>
                                     <ul class="des">
                                         <li>
-                                            <span>Address: </span>
-                                            6688Princess Road, London, Greater London BAS 23JK, UK
+                                            <span>KM 10 Nguyen Trai</span>
                                         </li>
                                         <li>
                                             <span>Phone: </span>
@@ -753,6 +533,111 @@
                 <!-- Footer Static Bottom Area End Here -->
             </div>
             <!-- Footer Area End Here -->
+            <!-- Begin Modal Area -->
+            <div class="modal fade open-modal" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                        <!-- Begin Modal Image Area -->
+                        <div class="col-md-5">
+                            <!-- Begin Modal Tab Content Area -->
+                            <div class="tab-content product-details-large myTabContent">
+                              <div class="tab-pane fade show active" id="single-slide1" role="tabpanel" aria-labelledby="single-slide-tab-1">
+                                  <!--Single Product Image Start-->
+                                  <div class="single-product-img img-full">
+                                    <img src="images/product/large-size/1.jpg" alt="">
+                                  </div>
+                                  <!--Single Product Image End-->
+                              </div>
+                              <div class="tab-pane fade" id="single-slide2" role="tabpanel" aria-labelledby="single-slide-tab-2">
+                                  <!--Single Product Image Start-->
+                                  <div class="single-product-img img-full">
+                                    <img src="images/product/large-size/2.jpg" alt="">
+                                  </div>
+                                  <!--Single Product Image End-->
+                              </div>
+                              <div class="tab-pane fade" id="single-slide3" role="tabpanel" aria-labelledby="single-slide-tab-3">
+                                  <!--Single Product Image Start-->
+                                  <div class="single-product-img img-full">
+                                    <img src="images/product/large-size/3.jpg" alt="">
+                                  </div>
+                                  <!--Single Product Image End-->
+                              </div>
+                              <div class="tab-pane fade" id="single-slide4" role="tabpanel" aria-labelledby="single-slide-tab-4">
+                                  <!--Single Product Image Start-->
+                                  <div class="single-product-img img-full">
+                                    <img src="images/product/large-size/4.jpg" alt="">
+                                  </div>
+                                  <!--Single Product Image End-->
+                              </div>
+                              <div class="tab-pane fade" id="single-slide5" role="tabpanel" aria-labelledby="single-slide-tab-4">
+                                  <!--Single Product Image Start-->
+                                  <div class="single-product-img img-full">
+                                    <img src="images/product/large-size/5.jpg" alt="">
+                                  </div>
+                                  <!--Single Product Image End-->
+                              </div>
+                              <div class="tab-pane fade" id="single-slide6" role="tabpanel" aria-labelledby="single-slide-tab-4">
+                                  <!--Single Product Image Start-->
+                                  <div class="single-product-img img-full">
+                                    <img src="images/product/large-size/6.jpg" alt="">
+                                  </div>
+                                  <!--Single Product Image End-->
+                              </div>
+                            </div>
+                            <!-- Modal Tab Content Area End Here -->
+                            <!-- Begin Modal Tab Menu Area -->
+                            <div class="single-product-menu">
+                                <div class="nav single-slide-menu owl-carousel" role="tablist">
+                                    <div class="single-tab-menu img-full">
+                                        <a class="active" data-toggle="tab" id="single-slide-tab-1" href="#single-slide1"><img src="images/product/small-size/1.jpg" alt=""></a>
+                                    </div>
+                                    <div class="single-tab-menu img-full">
+                                        <a data-toggle="tab" id="single-slide-tab-2" href="#single-slide2"><img src="images/product/small-size/2.jpg" alt=""></a>
+                                    </div>
+                                    <div class="single-tab-menu img-full">
+                                        <a data-toggle="tab" id="single-slide-tab-3" href="#single-slide3"><img src="images/product/small-size/3.jpg" alt=""></a>
+                                    </div>
+                                    <div class="single-tab-menu img-full">
+                                        <a data-toggle="tab" id="single-slide-tab-4" href="#single-slide4"><img src="images/product/small-size/4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="single-tab-menu img-full">
+                                        <a data-toggle="tab" id="single-slide-tab-5" href="#single-slide5"><img src="images/product/small-size/5.jpg" alt=""></a>
+                                    </div>
+                                    <div class="single-tab-menu img-full">
+                                        <a data-toggle="tab" id="single-slide-tab-6" href="#single-slide6"><img src="images/product/small-size/6.jpg" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Tab Menu End Here -->
+                        </div>
+                        <!-- Modal Image Area End Here -->
+                        <!-- Begin Modal Content Area -->
+                        <div class="col-md-7">
+                            <div class="modal-product-info">
+                                <h2>Accusantium dolorem1</h2>
+                                <div class="modal-product-price">
+                                   <span class="new-price">$46.80</span>
+                               </div>
+                               <div class="cart-description">
+                                   <p>Vector graphic, format: svg. Download for personal, private and non-commercial use.</p>
+                               </div>
+                               <div class="quantity">
+                                   <input class="input-text qty text" step="1" min="1" max="200" name="quantity" value="1" title="Qty" size="4" type="number">
+                               </div>
+                            </div>
+                        </div>
+                        <!-- Modal Content Area End Here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
         <!-- jQuery-V1.12.4 -->
@@ -797,7 +682,20 @@
         <script src="js/scrollUp.min.js"></script>
         <!-- Main/Activator js -->
         <script src="js/main.js"></script>
+    <script type="text/javascript">
+        function receiveOrder(orderId) {
+                window.location.href="receive-order.html?order_id=" + orderId;
+        }
+
+        function cancelOrder(orderId) {
+                if (confirm("Do you want to cancel this order?") === true) {
+                    window.location.href="cancel-order?order_id=" + orderId;
+                } else {
+                    return false;
+                }
+        }
+    </script>
     </body>
 
-<!-- compare32:04-->
+<!-- wishlist31:30-->
 </html>

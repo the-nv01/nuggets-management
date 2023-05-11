@@ -10,7 +10,9 @@ import nuggets.demo.Repository.WishListRepository;
 import nuggets.demo.Service.WishListService;
 import nuggets.demo.Session.SessionOperatorDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,12 +31,11 @@ public class WishListServiceImpl implements WishListService {
 
     @Override
     public List<Product> getWishListByUser() {
-
-        // default session
-        sessionOperatorDetails.setForm("account", userRepository.getUserByUsername("the"));
-
-        User account = sessionOperatorDetails.getForm("account", User.class);
-        List<WishList> wishList = wishListRepository.findAllByUsername(account.getUsername());
+        User user = new User();
+        if (sessionOperatorDetails.existsForm("account")) {
+            user = sessionOperatorDetails.getForm("account", User.class);
+        }
+        List<WishList> wishList = wishListRepository.findAllByUsernameOrderByDateDesc(user.getUsername());
 
         return wishList.stream().map(wish -> {
             return productRepository.findAllByProductId(wish.getProductId());

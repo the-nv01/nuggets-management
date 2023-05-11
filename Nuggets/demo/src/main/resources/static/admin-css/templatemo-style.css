@@ -235,6 +235,10 @@ thead {
   background-color: #da534f;
   box-shadow: 0 0 8px #da534f, inset 0 0 8px #da534f;
 }
+.success {
+  background-color: dodgerblue;
+  box-shadow: 0 0 8px dodgerblue, inset 0 0 8px dodgerblue;
+}
 .tm-avatar {
   width: 345px;
 }

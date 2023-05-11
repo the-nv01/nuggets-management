@@ -32,9 +32,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.retry:spring-retry'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
-	implementation 'org.springframework.security:spring-security-core:5.0.17.RELEASE'
-	implementation 'org.springframework.security:spring-security-config:5.0.17.RELEASE'
-	implementation 'org.springframework.security:spring-security-web:5.0.17.RELEASE'
+//	implementation 'org.springframework.security:spring-security-core:5.0.17.RELEASE'
+//	implementation 'org.springframework.security:spring-security-config:5.0.17.RELEASE'
+//	implementation 'org.springframework.security:spring-security-web:5.0.17.RELEASE'
 
 }
 

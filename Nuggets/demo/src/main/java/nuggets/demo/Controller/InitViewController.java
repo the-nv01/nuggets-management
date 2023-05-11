@@ -1,234 +1,90 @@
 package nuggets.demo.Controller;
 
 import lombok.RequiredArgsConstructor;
+import nuggets.demo.Model.Product;
+import nuggets.demo.Model.SearchRequest;
+import nuggets.demo.Model.User;
+import nuggets.demo.Repository.CategoryRepository;
+import nuggets.demo.Service.CartService;
+import nuggets.demo.Session.SessionOperatorDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("")
 @RequiredArgsConstructor
 public class InitViewController {
 
-    @GetMapping("/404.html")
-    public ModelAndView init404() {
-        return new ModelAndView("404");
-    }
+    private final CategoryRepository categoryRepository;
+
+    private final CartService cartService;
+
+    private final SessionOperatorDetails sessionOperatorDetails;
 
     @GetMapping("/about-us.html")
     public ModelAndView aboutUs() {
-        return new ModelAndView("about-us");
-    }
-
-    @GetMapping("/blog-2-column.html")
-    public ModelAndView blog2Column() {
-        return new ModelAndView("blog-2-column");
-    }
-
-    @GetMapping("/blog-3-column.html")
-    public ModelAndView blog3Column() {
-        return new ModelAndView("blog-3-column");
-    }
-
-    @GetMapping("/blog-audio-format.html")
-    public ModelAndView blogAudioFormat() {
-        return new ModelAndView("blog-audio-format");
-    }
-
-    @GetMapping("/blog-details.html")
-    public ModelAndView blogDetails() {
-        return new ModelAndView("blog-details");
-    }
-
-    @GetMapping("/blog-details-left-sidebar.html")
-    public ModelAndView blogDetailsLeftSidebar() {
-        return new ModelAndView("blog-details-left-sidebar");
-    }
-
-    @GetMapping("/blog-details-right-sidebar.html")
-    public ModelAndView blogDetailsRightSidebar() {
-        return new ModelAndView("blog-details-right-sidebar");
-    }
-
-    @GetMapping("/blog-gallery-format.html")
-    public ModelAndView blogGalleryFormat() {
-        return new ModelAndView("blog-gallery-format");
-    }
-
-    @GetMapping("/blog-left-sidebar.html")
-    public ModelAndView blogLeftSidebar() {
-        return new ModelAndView("blog-left-sidebar");
-    }
-
-    @GetMapping("/blog-list.html")
-    public ModelAndView blogList() {
-        return new ModelAndView("blog-list");
-    }
-
-    @GetMapping("/blog-list-left-sidebar.html")
-    public ModelAndView blogListLeftSidebar() {
-        return new ModelAndView("blog-list-left-sidebar");
-    }
-
-    @GetMapping("/blog-list-right-sidebar.html")
-    public ModelAndView blogListRightSidebar() {
-        return new ModelAndView("blog-list-right-sidebar");
-    }
-
-    @GetMapping("/blog-right-sidebar.html")
-    public ModelAndView blogRightSidebar() {
-        return new ModelAndView("blog-right-sidebar");
-    }
-
-    @GetMapping("/blog-video-format.html")
-    public ModelAndView blogVideoFormat() {
-        return new ModelAndView("blog-video-format");
-    }
-
-    @GetMapping("/cart.html")
-    public ModelAndView cart() {
-        return new ModelAndView("cart");
-    }
-
-    @GetMapping("/checkout.html")
-    public ModelAndView checkout() {
-        return new ModelAndView("checkout");
-    }
-
-    @GetMapping("/compare.html")
-    public ModelAndView compare() {
-        return new ModelAndView("compare");
+        ModelAndView mav = new ModelAndView("about-us");
+        initCart(mav);
+        return mav;
     }
 
     @GetMapping("/contact.html")
     public ModelAndView contact() {
-        return new ModelAndView("contact");
-    }
-
-    @GetMapping("/faq.html")
-    public ModelAndView faq() {
-        return new ModelAndView("faq");
-    }
-
-    @GetMapping("/index-2.html")
-    public ModelAndView index2() {
-        return new ModelAndView("index-2");
-    }
-
-    @GetMapping("/index-3.html")
-    public ModelAndView index3() {
-        return new ModelAndView("index-3");
-    }
-
-    @GetMapping("/index-4.html")
-    public ModelAndView index4() {
-        return new ModelAndView("index-4");
-    }
-
-    @GetMapping("/product-details.html")
-    public ModelAndView productDetails() {
-        return new ModelAndView("product-details");
-    }
-
-    @GetMapping("/shop-3-column.html")
-    public ModelAndView shop3Column() {
-        return new ModelAndView("shop-3-column");
-    }
-
-    @GetMapping("/shop-4-column.html")
-    public ModelAndView shop4Column() {
-        return new ModelAndView("shop-4-column");
-    }
-
-    @GetMapping("/shop-left-sidebar.html")
-    public ModelAndView shopLeftSidebar() {
-        return new ModelAndView("shop-left-sidebar");
-    }
-
-    @GetMapping("/shop-list.html")
-    public ModelAndView shopList() {
-        return new ModelAndView("shop-list");
-    }
-
-    @GetMapping("/shop-list-left-sidebar.html")
-    public ModelAndView shopListLeftSidebar() {
-        return new ModelAndView("shop-list-left-sidebar");
-    }
-
-    @GetMapping("/shop-list-right-sidebar.html")
-    public ModelAndView shopListRightSidebar() {
-        return new ModelAndView("shop-list-right-sidebar");
-    }
-
-    @GetMapping("/shop-right-sidebar.html")
-    public ModelAndView shopRightSidebar() {
-        return new ModelAndView("shop-right-sidebar");
-    }
-
-    @GetMapping("/single-product-affiliate.html")
-    public ModelAndView singleProductAffiliate() {
-        return new ModelAndView("single-product-affiliate");
-    }
-
-    @GetMapping("/single-product-carousel.html")
-    public ModelAndView singleProductCarousel() {
-        return new ModelAndView("single-product-carousel.html");
-    }
-
-    @GetMapping("/single-product-gallery-left.html")
-    public ModelAndView singleProductGalleryLeft() {
-        return new ModelAndView("single-product-gallery-left");
-    }
-
-    @GetMapping("/single-product-gallery-right.html")
-    public ModelAndView singleProductGalleryRight() {
-        return new ModelAndView("single-product-gallery-right");
-    }
-
-    @GetMapping("/single-product-group.html")
-    public ModelAndView singleProductGroup() {
-        return new ModelAndView("single-product-group");
-    }
-
-    @GetMapping("/single-product-normal.html")
-    public ModelAndView singleProductNormal() {
-        return new ModelAndView("single-product-normal");
-    }
-
-    @GetMapping("/single-product-sale.html")
-    public ModelAndView singleProductSale() {
-        return new ModelAndView("single-product-sale");
-    }
-
-    @GetMapping("/single-product-tab-style-left.html")
-    public ModelAndView singleProductTabStyleLeft() {
-        return new ModelAndView("single-product-tab-style-left");
-    }
-
-    @GetMapping("/single-product-tab-style-right.html")
-    public ModelAndView singleProductTabStyleRight() {
-        return new ModelAndView("single-product-tab-style-right");
-    }
-
-    @GetMapping("/single-product-tab-style-top.html")
-    public ModelAndView singleProductTabStyleTop() {
-        return new ModelAndView("single-product-tab-style-top");
+        ModelAndView mav = new ModelAndView("contact");
+        initCart(mav);
+        return mav;
     }
 
     @GetMapping("/accounts.html")
     public ModelAndView accounts() {
-        return new ModelAndView("accounts");
+        ModelAndView mav = new ModelAndView("accounts");
+        initCart(mav);
+        return mav;
     }
 
-    @GetMapping("/add-product.html")
-    public ModelAndView addProduct() {
-        return new ModelAndView("add-product");
+    @GetMapping("/blog-2-column.html")
+    public ModelAndView blog2Column() {
+        ModelAndView mav = new ModelAndView("blog-2-column");
+        initCart(mav);
+        return mav;
     }
 
-    @GetMapping("/admin-page.html")
-    public ModelAndView adminPage() {
-        return new ModelAndView("admin-page");
+    @GetMapping("/shop-3-column.html")
+    public ModelAndView shop3Column() {
+        ModelAndView mav = new ModelAndView("shop-3-column");
+        initCart(mav);
+        return mav;
+    }
+
+    @GetMapping("/shop-left-sidebar.html")
+    public ModelAndView shopLeftSidebar() {
+        ModelAndView mav = new ModelAndView("shop-left-sidebar");
+        initCart(mav);
+        return mav;
+    }
+
+    private void initCart(ModelAndView modelAndView) {
+        List<Product> productsByUser = cartService.getProductsByUser();
+        modelAndView.addObject("productsByUser", productsByUser);
+        modelAndView.addObject("memberWishlist", sessionOperatorDetails.existsForm("memberWishlist") ? sessionOperatorDetails.getForm("memberWishlist", ArrayList.class) : new ArrayList<>());
+        modelAndView.addObject("subtotal", calTotalPrice(productsByUser));
+        modelAndView.addObject("categories", categoryRepository.findAllByOrderByCategoryIdAsc());
+        modelAndView.addObject("isLogin", sessionOperatorDetails.existsForm("account"));
+        modelAndView.addObject("searchRequest", new SearchRequest());
+    }
+
+    private Double calTotalPrice(List<Product> products) {
+        double sum = 0;
+        for (Product product : products) {
+            sum += product.getNewPrice() * product.getQuantityProductCart();
+        }
+        return sum;
     }
 
 }

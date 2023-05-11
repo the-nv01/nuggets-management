@@ -12,10 +12,13 @@ import nuggets.demo.Repository.WishListRepository;
 import nuggets.demo.Service.CartService;
 import nuggets.demo.Session.SessionOperatorDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,13 +38,12 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<Product> getProductsByUser() {
-        // default session
-        sessionOperatorDetails.setForm("account", userRepository.getUserByUsername("the"));
-        sessionOperatorDetails.setForm("memberWishlist", wishListRepository.findAllByUsername("the"));
-        sessionOperatorDetails.setForm("memberCarts", cartRepository.findAllByUsername("the"));
-
-        User account = sessionOperatorDetails.getForm("account", User.class);
-        List<Cart> carts = cartRepository.findAllByUsername(account.getUsername());
+        User user = new User();
+        if (sessionOperatorDetails.existsForm("account")) {
+            user = sessionOperatorDetails.getForm("account", User.class);
+        }
+        List<Cart> carts = cartRepository.findAllByUsernameOrderByDateDesc(user.getUsername());
+        if (ObjectUtils.isEmpty(carts)) return new ArrayList<>();
 
         return carts.stream().map(cart -> {
             Product product = productRepository.findAllByProductId(cart.getProductId());
@@ -54,19 +56,21 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public Integer deleteMemberProduct(Integer productId) {
-        User account = sessionOperatorDetails.getForm("account", User.class);
+        User user = sessionOperatorDetails.getForm("account", User.class);
 
-        return cartRepository.deleteCartByUsernameAndProductId(account.getUsername(), productId);
+        return cartRepository.deleteCartByUsernameAndProductId(user.getUsername(), productId);
     }
 
     @Override
     public void updateCart(CartDTO cartDTO) {
-        User account = sessionOperatorDetails.getForm("account", User.class);
+        User user = sessionOperatorDetails.getForm("account", User.class);
 
         for (int i = 0; i<cartDTO.getProductIds().size(); i++) {
-            Cart cart = cartRepository.findCartByUsernameAndProductId(account.getUsername(), cartDTO.getProductIds().get(i));
-            cart.setQuantity(cartDTO.getQuantities().get(i));
-            cartRepository.save(cart);
+            if (!Objects.equals(cartDTO.getProductIds().get(i), null)) {
+                Cart cart = cartRepository.findCartByUsernameAndProductIdOrderByDateDesc(user.getUsername(), cartDTO.getProductIds().get(i));
+                cart.setQuantity(cartDTO.getQuantities().get(i));
+                cartRepository.save(cart);
+            }
         }
     }
 }

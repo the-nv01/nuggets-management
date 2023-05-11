@@ -243,16 +243,16 @@
     <script>
       jQuery(document).ready(function ($) {
         $('#warning').hide();
-          $('#update').click(function () {
-            if ($('#name').val() === '' || $('#description').val() === '' || $('#category').val() === '' || $('#price').val() === '' || $('#discount').val() === '') {
-              $('#warning').show();
+        $('#update').click(function () {
+          if ($('#name').val() === '' || $('#description').val() === '' || $('#category').val() === '' || $('#price').val() === '' || $('#discount').val() === '') {
+            $('#warning').show();
+          } else {
+            if (confirm("Are you sure?") === true) {
+              $('#update-form').submit();
             } else {
-              if (confirm("Are you sure?") === true) {
-                $('#update-form').submit();
-              } else {
-                return false;
-              }
-          }})
+              return false;
+            }
+        }})
       });
     </script>
   </body>

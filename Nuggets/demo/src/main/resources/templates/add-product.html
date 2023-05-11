@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin_app}" xml:lang="zxx" class="no-js" lang="zxx" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,7 +54,7 @@
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
-                id="navbarDropdown"
+                id=""
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
@@ -120,11 +121,13 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" class="tm-edit-product-form">
+                <div style="color: red" id="warning">Please fill all the information!</div>
+                <form action="/edit-product" method="post" class="tm-edit-product-form" th:object="${product}" id="update-form">
+                  <input type="hidden" th:field="${product.productId}">
+                  <input type="hidden" th:field="${product.image}">
                   <div class="form-group mb-3">
                     <label
-                      for="name"
-                      >Product Name
+                            for="name">Product Name
                     </label>
                     <input
                       id="name"
@@ -140,9 +143,11 @@
                       >Description</label
                     >
                     <textarea
-                      class="form-control validate"
-                      rows="3"
-                      required
+                            id="description"
+                            class="form-control validate tm-small"
+                            rows="5"
+                            th:field="${product.detail}"
+                            required
                     ></textarea>
                   </div>
                   <div class="form-group mb-3">
@@ -151,44 +156,45 @@
                       >Category</label
                     >
                     <select
-                      class="custom-select tm-select-accounts"
-                      id="category"
-                    >
-                      <option selected>Select category</option>
-                      <option value="1">New Arrival</option>
-                      <option value="2">Most Popular</option>
-                      <option value="3">Trending</option>
+                            class="custom-select tm-select-accounts"
+                            id="category"
+                            th:field="${product.categoryId}">
+                      <option selected="selected" hidden="hidden" value="0"></option>
+                      <th:block th:each="category : ${categories}">
+                        <option th:text="${category.name}" th:value="${category.categoryId}"></option>
+                      </th:block>
                     </select>
                   </div>
                   <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="expire_date"
-                            >Expire Date
-                          </label>
-                          <input
-                            id="expire_date"
-                            name="expire_date"
-                            type="text"
-                            class="form-control validate"
-                            data-large-mode="true"
-                          />
-                        </div>
-                        <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="stock"
-                            >Units In Stock
-                          </label>
-                          <input
-                            id="stock"
-                            name="stock"
-                            type="text"
-                            class="form-control validate"
-                            required
-                          />
-                        </div>
+                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                      <label
+                              for="price"
+                      >Price
+                      </label>
+                      <input
+                              id="price"
+                              name="price"
+                              type="text"
+                              th:field="${product.price}"
+                              class="form-control validate"
+                              data-large-mode="true"
+                      />
+                    </div>
+                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                      <label
+                              for="discount"
+                      >Discount
+                      </label>
+                      <input
+                              id="discount"
+                              name="discount"
+                              type="text"
+                              th:field="${product.discount}"
+                              class="form-control validate"
+                      />
+                    </div>
                   </div>
-                  
+                </form>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
@@ -208,9 +214,9 @@
                 </div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+                <button type="button" id="update" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
               </div>
-            </form>
+              </form>
             </div>
           </div>
         </div>

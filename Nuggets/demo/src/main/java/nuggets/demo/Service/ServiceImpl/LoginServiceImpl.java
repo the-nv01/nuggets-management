@@ -4,8 +4,9 @@ import lombok.RequiredArgsConstructor;
 import nuggets.demo.Model.User;
 import nuggets.demo.Repository.UserRepository;
 import nuggets.demo.Service.LoginService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,9 +20,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
+    @Transactional
     public User register(User user) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 }

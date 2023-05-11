@@ -8,7 +8,11 @@ import java.util.List;
 
 @Repository
 public interface WishListRepository extends CrudRepository<WishList, Integer> {
-    List<WishList> findAllByUsername(String username);
+    List<WishList> findAllByUsernameOrderByDateDesc(String username);
+
+    WishList findWishListByProductIdAndUsernameOrderByDateDesc(Integer productId, String username);
 
     Integer deleteWishListByUsernameAndProductId (String username, Integer productId);
+
+    WishList save(WishList wishList);
 }

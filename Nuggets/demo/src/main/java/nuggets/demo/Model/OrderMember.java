@@ -1,15 +1,11 @@
 package nuggets.demo.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -17,14 +13,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 @Builder
-public class User {
+public class  OrderMember{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column
-    private String username;
+    private Integer orderId;
 
     @Column
-    private String password;
+    private Integer cartId;
+
+    @Column
+    private String username;
 
     @Column (name = "first_name")
     private String firstName;
@@ -59,7 +58,23 @@ public class User {
     @Column
     private Integer phone;
 
-    private String backUrl;
+    @Column
+    private String note;
 
-    private String destinationUrl;
+    @Column
+    private String date;
+
+    @Column
+    private Double subtotal;
+
+    @Column
+    private Double discount;
+
+    @Column
+    private Double total;
+
+    @Column
+    private Integer orderStatus;
+
+    private Boolean isNotMemberAddress = false;
 }

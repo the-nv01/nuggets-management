@@ -2,9 +2,7 @@ package nuggets.demo.Controller;
 
 import lombok.RequiredArgsConstructor;
 import nuggets.demo.Model.*;
-import nuggets.demo.Repository.CartRepository;
-import nuggets.demo.Repository.CategoryRepository;
-import nuggets.demo.Repository.CouponRepository;
+import nuggets.demo.Repository.*;
 import nuggets.demo.Service.CartService;
 import nuggets.demo.Session.SessionOperatorDetails;
 import org.springframework.stereotype.Controller;
@@ -12,6 +10,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,33 +18,43 @@ import java.util.List;
 @Controller
 @RequestMapping("")
 @RequiredArgsConstructor
-public class CartController {
+public class CheckoutController {
 
-    private final CategoryRepository categoryRepository;
+    private final OrderMemberRepository orderMemberRepository;
 
     private final CouponRepository couponRepository;
+
+    private final UserRepository userRepository;
+
+    private final CartRepository cartRepository;
+
+    private final CategoryRepository categoryRepository;
 
     private final CartService cartService;
 
     private final SessionOperatorDetails sessionOperatorDetails;
 
-    @GetMapping("/shopping-cart.html")
+    @GetMapping("/checkout.html")
     public ModelAndView initView(@RequestParam (value = "coupon_code", required = false) String couponCode) {
-        ModelAndView modelAndView = new ModelAndView("shopping-cart");
+        ModelAndView modelAndView = new ModelAndView("checkout");
+        modelAndView.addObject("newUser", new User());
+        modelAndView.addObject("isCorrectLogin", true);
+        modelAndView.addObject("isCorrectLogin", true);
 
         List<Product> productsByUser = cartService.getProductsByUser();
 
-        modelAndView.addObject("productsByUser", productsByUser);
-        modelAndView.addObject("categories", categoryRepository.findAllByOrderByCategoryIdAsc());
-        modelAndView.addObject("isLogin", sessionOperatorDetails.existsForm("account"));
-        modelAndView.addObject("searchRequest", new SearchRequest());
-
+        modelAndView.addObject("user", sessionOperatorDetails.existsForm("account") ? sessionOperatorDetails.getForm("account", User.class) : new User());
+        modelAndView.addObject("orderMember", new OrderMember());
         modelAndView.addObject("products", productsByUser);
         modelAndView.addObject("carts", new CartDTO());
         modelAndView.addObject("memberWishlist", sessionOperatorDetails.existsForm("memberWishlist") ? sessionOperatorDetails.getForm("memberWishlist", ArrayList.class) : new ArrayList<>());
         modelAndView.addObject("memberCarts", sessionOperatorDetails.existsForm("memberCarts") ? sessionOperatorDetails.getForm("memberCarts", ArrayList.class) : new ArrayList<>());
         modelAndView.addObject("subtotal", calTotalPrice(productsByUser));
         modelAndView.addObject("now", LocalDate.now().toString());
+        modelAndView.addObject("productsByUser", productsByUser);
+        modelAndView.addObject("categories", categoryRepository.findAllByOrderByCategoryIdAsc());
+        modelAndView.addObject("isLogin", sessionOperatorDetails.existsForm("account"));
+        modelAndView.addObject("searchRequest", new SearchRequest());
 
         Integer discount = 0;
         String alertCoupon = "";
@@ -65,20 +74,39 @@ public class CartController {
         modelAndView.addObject("alertCoupon", alertCoupon);
         modelAndView.addObject("discount", discount);
         modelAndView.addObject("totalPrice", calTotalPrice(productsByUser)*(100-discount)/100);
+
         return modelAndView;
     }
 
-    @GetMapping("/delete-member-product")
-    public ModelAndView deleteProduct(@RequestParam (value = "product_id") Integer productId) {
-        cartService.deleteMemberProduct(productId);
-
-        return new ModelAndView("redirect:/shopping-cart.html");
-    }
-
-    @PostMapping("/update-cart")
-    public ModelAndView updateCart(@ModelAttribute CartDTO cartDTO) {
-        cartService.updateCart(cartDTO);
-        return new ModelAndView("redirect:/shopping-cart.html");
+    @PostMapping("/order-history")
+    @Transactional
+    public ModelAndView Order(@ModelAttribute OrderMember orderMember) {
+        if (!sessionOperatorDetails.existsForm("account")) {
+            return new ModelAndView("redirect:/index-2.html");
+        }
+        User user = sessionOperatorDetails.getForm("account", User.class);
+        if (!orderMember.getIsNotMemberAddress()) {
+            User newUser = User.builder()
+                    .username(user.getUsername())
+                    .password(user.getPassword())
+                    .firstName(orderMember.getFirstName())
+                    .lastName(orderMember.getLastName())
+                    .email(orderMember.getEmail())
+                    .role(user.getRole())
+                    .country(orderMember.getCountry())
+                    .company(orderMember.getCompany())
+                    .address(orderMember.getAddress())
+                    .apartment(orderMember.getApartment())
+                    .city(orderMember.getCity())
+                    .state(orderMember.getState())
+                    .phone(orderMember.getPhone())
+                    .build();
+            userRepository.save(newUser);
+        }
+        cartRepository.deleteCartByUsername(user.getUsername());
+        orderMember.setOrderStatus(0);
+        orderMemberRepository.save(orderMember);
+        return new ModelAndView("redirect:/index-2.html");
     }
 
     public Double calTotalPrice(List<Product> products) {
