@@ -294,8 +294,8 @@
                                                         <th:block th:case="3"><div class="tm-status-circle cancelled">
                                                         </div>Cancel</th:block>
                                                     </td>
-                                                    <td><button id="received" class="btn btn-primary btn-block text-uppercase" th:onclick="|receiveOrder(${orderMember.orderId})|" th:if="${orderMember.orderStatus} == 1">RECEIVED</button></td>
-                                                    <td><button id="cancel" class="btn btn-primary btn-block text-uppercase" th:onclick="|cancelOrder(${orderMember.orderId})|" th:if="${orderMember.orderStatus} == 0 OR ${orderMember.orderStatus} == 1">CANCEL</button></td>
+                                                    <td><button id="received" class="btn btn-primary btn-block text-uppercase" th:if="${orderMember.orderStatus} == 1"><a th:href="'receive-order?order_id=' + ${orderMember.orderId}">RECEIVED</a></button></td>
+                                                    <td><button id="cancel" class="btn btn-primary btn-block text-uppercase" th:if="${orderMember.orderStatus} == 0 OR ${orderMember.orderStatus} == 1"><a th:href="'cancel-order?order_id=' + ${orderMember.orderId}">CANCEL</a></button></td>
                                                 </tr>
                                             </th:block>
                                         </tbody>
@@ -682,19 +682,6 @@
         <script src="js/scrollUp.min.js"></script>
         <!-- Main/Activator js -->
         <script src="js/main.js"></script>
-    <script type="text/javascript">
-        function receiveOrder(orderId) {
-                window.location.href="receive-order.html?order_id=" + orderId;
-        }
-
-        function cancelOrder(orderId) {
-                if (confirm("Do you want to cancel this order?") === true) {
-                    window.location.href="cancel-order?order_id=" + orderId;
-                } else {
-                    return false;
-                }
-        }
-    </script>
     </body>
 
 <!-- wishlist31:30-->

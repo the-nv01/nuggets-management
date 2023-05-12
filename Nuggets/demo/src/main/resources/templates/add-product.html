@@ -122,7 +122,7 @@
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
                 <div style="color: red" id="warning">Please fill all the information!</div>
-                <form action="/edit-product" method="post" class="tm-edit-product-form" th:object="${product}" id="update-form">
+                <form action="/update-product" method="post" class="tm-edit-product-form" th:object="${product}" id="update-form">
                   <input type="hidden" th:field="${product.productId}">
                   <input type="hidden" th:field="${product.image}">
                   <div class="form-group mb-3">
@@ -241,6 +241,20 @@
     <script>
       $(function() {
         $("#expire_date").datepicker();
+      });
+
+      jQuery(document).ready(function ($) {
+        $('#warning').hide();
+        $('#update').click(function () {
+          if ($('#name').val() === '' || $('#description').val() === '' || $('#category').val() === '' || $('#price').val() === '' || $('#discount').val() === '') {
+            $('#warning').show();
+          } else {
+            if (confirm("Are you sure?") === true) {
+              $('#update-form').submit();
+            } else {
+              return false;
+            }
+          }})
       });
     </script>
   </body>

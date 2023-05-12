@@ -236,8 +236,8 @@
                                         <td><b th:text="${orderMember.apartment}+' '+${orderMember.company}+' '+${orderMember.state}+' '+${orderMember.city}+' '+${orderMember.country}"></b></td>
                                         <td><b th:text="${orderMember.date}"></b></td>
                                         <td th:text="${orderMember.note}"></td>
-                                        <td><button id="delivery" class="btn btn-primary btn-block text-uppercase" th:onclick="|deliveryOrder(${orderMember.orderId})|" th:if="${orderMember.orderStatus} == 0">DELIVERY</button></td>
-                                        <td><button id="cancel" class="btn btn-primary btn-block text-uppercase" th:onclick="|cancelOrder(${orderMember.orderId})|" th:if="${orderMember.orderStatus} == 0 OR ${orderMember.orderStatus} == 1">CANCEL</button></td>
+                                        <td><button id="delivery" class="btn btn-primary btn-block text-uppercase" th:if="${orderMember.orderStatus} == 0"><a th:href="'/delivery-order?order_id=' + ${orderMember.orderId}">DELIVERY</a></button></td>
+                                        <td><button id="cancel" class="btn btn-primary btn-block text-uppercase" th:if="${orderMember.orderStatus} == 0 OR ${orderMember.orderStatus} == 1"><a th:href="'cancel-order?order_id=' + ${orderMember.orderId}">CANCEL</a></button></td>
                                     </tr>
                                 </th:block>
                             </tbody>
@@ -290,23 +290,6 @@
                 updateBarChart();                
             });
         })
-    </script>
-    <script>
-        function deliveryOrder(orderId) {
-            jQuery(document).ready(function ($) {
-                window.location.href="delivery-order?order_id=" + orderId;
-            });
-        }
-
-        function cancelOrder(orderId) {
-            jQuery(document).ready(function ($) {
-                if (confirm("Do you want to cancel this order?") === true) {
-                    window.location.href="cancel-order?order_id=" + orderId;
-                } else {
-                    return false;
-                }
-            });
-        }
     </script>
 </body>
 

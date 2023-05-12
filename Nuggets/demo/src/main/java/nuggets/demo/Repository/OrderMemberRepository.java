@@ -15,6 +15,6 @@ public interface OrderMemberRepository extends CrudRepository<OrderMember, Strin
 
     List<OrderMember> findAllByOrderByDateDesc();
 
-    List<OrderMember> findAllByUsernameOrderByDateDesc(String username);
+    List<OrderMember> findAllByUsernameOrderByOrderIdDesc(String username);
 
 }

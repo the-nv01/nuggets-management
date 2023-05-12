@@ -302,7 +302,7 @@
                                         </p>
                                     </div>
                                     <div class="single-add-to-cart">
-                                        <form action="#" class="cart-quantity">
+                                        <form class="cart-quantity">
                                             <div class="quantity">
                                                 <label>Quantity</label>
                                                 <div class="cart-plus-minus">
@@ -311,7 +311,7 @@
                                                     <div class="inc qtybutton" th:id="'plus-quantity[' + ${product.productId} + ']'" th:onclick="|plusQuantity(${product.quantity}, ${product.productId})|"><i class="fa fa-angle-up"></i></div>
                                                 </div>
                                             </div>
-                                            <button class="add-to-cart" type="submit">Add to cart</button>
+                                            <button class="add-to-cart" type="button"><a th:href="'add-member-product?product_id=' + ${product.productId}">Add to cart</a></button>
                                         </form>
                                     </div>
                                     <div class="product-additional-info pt-25">

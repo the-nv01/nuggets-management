@@ -63,6 +63,7 @@ public class CartController {
         }
 
         modelAndView.addObject("alertCoupon", alertCoupon);
+        modelAndView.addObject("discountName", couponCode);
         modelAndView.addObject("discount", discount);
         modelAndView.addObject("totalPrice", calTotalPrice(productsByUser)*(100-discount)/100);
         return modelAndView;

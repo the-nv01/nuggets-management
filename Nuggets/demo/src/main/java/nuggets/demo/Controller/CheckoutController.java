@@ -78,36 +78,36 @@ public class CheckoutController {
         return modelAndView;
     }
 
-    @PostMapping("/order-history")
-    @Transactional
-    public ModelAndView Order(@ModelAttribute OrderMember orderMember) {
-        if (!sessionOperatorDetails.existsForm("account")) {
-            return new ModelAndView("redirect:/index-2.html");
-        }
-        User user = sessionOperatorDetails.getForm("account", User.class);
-        if (!orderMember.getIsNotMemberAddress()) {
-            User newUser = User.builder()
-                    .username(user.getUsername())
-                    .password(user.getPassword())
-                    .firstName(orderMember.getFirstName())
-                    .lastName(orderMember.getLastName())
-                    .email(orderMember.getEmail())
-                    .role(user.getRole())
-                    .country(orderMember.getCountry())
-                    .company(orderMember.getCompany())
-                    .address(orderMember.getAddress())
-                    .apartment(orderMember.getApartment())
-                    .city(orderMember.getCity())
-                    .state(orderMember.getState())
-                    .phone(orderMember.getPhone())
-                    .build();
-            userRepository.save(newUser);
-        }
-        cartRepository.deleteCartByUsername(user.getUsername());
-        orderMember.setOrderStatus(0);
-        orderMemberRepository.save(orderMember);
-        return new ModelAndView("redirect:/index-2.html");
-    }
+//    @PostMapping("/order-history")
+//    @Transactional
+//    public ModelAndView Order(@ModelAttribute OrderMember orderMember) {
+//        if (!sessionOperatorDetails.existsForm("account")) {
+//            return new ModelAndView("redirect:/index-2.html");
+//        }
+//        User user = sessionOperatorDetails.getForm("account", User.class);
+//        if (!orderMember.getIsNotMemberAddress()) {
+//            User newUser = User.builder()
+//                    .username(user.getUsername())
+//                    .password(user.getPassword())
+//                    .firstName(orderMember.getFirstName())
+//                    .lastName(orderMember.getLastName())
+//                    .email(orderMember.getEmail())
+//                    .role(user.getRole())
+//                    .country(orderMember.getCountry())
+//                    .company(orderMember.getCompany())
+//                    .address(orderMember.getAddress())
+//                    .apartment(orderMember.getApartment())
+//                    .city(orderMember.getCity())
+//                    .state(orderMember.getState())
+//                    .phone(orderMember.getPhone())
+//                    .build();
+//            userRepository.save(newUser);
+//        }
+//        cartRepository.deleteCartByUsername(user.getUsername());
+//        orderMember.setOrderStatus(0);
+//        orderMemberRepository.save(orderMember);
+//        return new ModelAndView("redirect:/index-2.html");
+//    }
 
     public Double calTotalPrice(List<Product> products) {
         double sum = 0;

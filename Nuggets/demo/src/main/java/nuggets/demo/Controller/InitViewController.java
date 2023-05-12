@@ -69,6 +69,12 @@ public class InitViewController {
         return mav;
     }
 
+    @GetMapping("/complete_notification.html")
+    public ModelAndView complete() {
+        ModelAndView mav = new ModelAndView("complete_notification");
+        return mav;
+    }
+
     private void initCart(ModelAndView modelAndView) {
         List<Product> productsByUser = cartService.getProductsByUser();
         modelAndView.addObject("productsByUser", productsByUser);

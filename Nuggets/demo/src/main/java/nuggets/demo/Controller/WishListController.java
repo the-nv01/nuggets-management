@@ -61,6 +61,7 @@ public class WishListController {
         }
         User user = sessionOperatorDetails.getForm("account", User.class);
         wishListRepository.deleteWishListByUsernameAndProductId(user.getUsername(), productId);
+        sessionOperatorDetails.setForm("memberWishlist", wishListRepository.findAllByUsernameOrderByDateDesc(user.getUsername()));
         return new ModelAndView("redirect:/wishlist.html");
     }
 
@@ -84,7 +85,7 @@ public class WishListController {
             wish.setDate(conVertStringToDate(DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS")));
             wishListRepository.save(wish);
         }
-
+        sessionOperatorDetails.setForm("memberWishlist", wishListRepository.findAllByUsernameOrderByDateDesc(user.getUsername()));
 
         return modelAndView;
     }

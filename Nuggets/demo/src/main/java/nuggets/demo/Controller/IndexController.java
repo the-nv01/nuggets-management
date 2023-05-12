@@ -6,6 +6,7 @@ import nuggets.demo.Model.Product;
 import nuggets.demo.Model.SearchRequest;
 import nuggets.demo.Model.User;
 import nuggets.demo.Repository.CategoryRepository;
+import nuggets.demo.Repository.ProductRepository;
 import nuggets.demo.Service.CartService;
 import nuggets.demo.Service.ServiceImpl.IndexServiceImpl;
 import nuggets.demo.Session.SessionOperatorDetails;
@@ -28,6 +29,8 @@ public class IndexController {
 
     private final CategoryRepository categoryRepository;
 
+    private final ProductRepository productRepository;
+
     private final SessionOperatorDetails sessionOperatorDetails;
 
     @GetMapping("")
@@ -49,6 +52,9 @@ public class IndexController {
 
         mav.addObject("products", indexService.findAll());
         mav.addObject("largeProducts", indexService.getLargeProducts());
+        mav.addObject("monitorProducts", productRepository.findAllByCategoryId(1));
+        mav.addObject("watchProducts", productRepository.findAllByCategoryId(8));
+        mav.addObject("phoneProducts", productRepository.findAllByCategoryId(7));
         return mav;
     }
     public Double calTotalPrice(List<Product> products) {

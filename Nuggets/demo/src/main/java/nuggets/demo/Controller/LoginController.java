@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -53,7 +54,6 @@ public class LoginController {
         modelAndView.addObject("subtotal", calTotalPrice(productsByUser));
         modelAndView.addObject("categories", categoryRepository.findAllByOrderByCategoryIdAsc());
         modelAndView.addObject("isLogin", sessionOperatorDetails.existsForm("account"));
-        modelAndView.addObject("searchRequest", new SearchRequest());
 
         return modelAndView;
     }
@@ -69,6 +69,7 @@ public class LoginController {
         } else {
             sessionOperatorDetails.setForm("account", account);
             sessionOperatorDetails.setForm("memberWishlist", wishListRepository.findAllByUsernameOrderByDateDesc(account.getUsername()));
+
             if (Objects.equals(account.getRole(), "admin")) {
                 modelAndView.setViewName("redirect:/admin-page.html");
             }
@@ -78,15 +79,18 @@ public class LoginController {
     }
 
     @PostMapping("/register")
+    @Transactional
     public ModelAndView register(@ModelAttribute User user) {
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("redirect:/index-2.html");
 
         if (!ObjectUtils.isEmpty(userRepository.getUserByUsername(user.getUsername()))) {
             modelAndView.addObject("isCorrectRegister", false);
-            modelAndView.setViewName("login-register");
+            modelAndView.setViewName("redirect:/login-register.html");
         } else {
             user.setRole("user");
             loginService.register(user);
+            sessionOperatorDetails.setForm("account", user);
+            sessionOperatorDetails.setForm("memberWishlist", wishListRepository.findAllByUsernameOrderByDateDesc(user.getUsername()));
         }
 
         return modelAndView;

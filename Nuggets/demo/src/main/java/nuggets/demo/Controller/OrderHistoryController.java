@@ -5,7 +5,6 @@ import nuggets.demo.Model.OrderMember;
 import nuggets.demo.Model.Product;
 import nuggets.demo.Model.SearchRequest;
 import nuggets.demo.Model.User;
-import nuggets.demo.Repository.CartRepository;
 import nuggets.demo.Repository.CategoryRepository;
 import nuggets.demo.Repository.OrderMemberRepository;
 import nuggets.demo.Service.CartService;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -41,29 +41,35 @@ public class OrderHistoryController {
             return new ModelAndView("redirect:/index-2.html");
         }
         User user = sessionOperatorDetails.getForm("account", User.class);
-        mav.addObject("orderMembers", orderMemberRepository.findAllByUsernameOrderByDateDesc(user.getUsername()));
+        mav.addObject("orderMembers", orderMemberRepository.findAllByUsernameOrderByOrderIdDesc(user.getUsername()));
         initCart(mav);
         return mav;
     }
 
     @GetMapping("/receive-order")
+    @Transactional
     public ModelAndView receiveOrder(@RequestParam (value = "order_id") Integer orderId) {
         OrderMember orderMember = orderMemberRepository.findByOrderId(orderId);
         orderMember.setOrderStatus(2);
+        orderMemberRepository.save(orderMember);
         return new ModelAndView("redirect:/order-history.html");
     }
 
     @GetMapping("/delivery-order")
+    @Transactional
     public ModelAndView deliveryOrder(@RequestParam (value = "order_id") Integer orderId) {
         OrderMember orderMember = orderMemberRepository.findByOrderId(orderId);
         orderMember.setOrderStatus(1);
+        orderMemberRepository.save(orderMember);
         return new ModelAndView("redirect:/admin-page.html");
     }
 
     @GetMapping("/cancel-order")
+    @Transactional
     public ModelAndView cancelOrder(@RequestParam (value = "order_id") Integer orderId) {
         OrderMember orderMember = orderMemberRepository.findByOrderId(orderId);
         orderMember.setOrderStatus(3);
+        orderMemberRepository.save(orderMember);
         if (!sessionOperatorDetails.existsForm("account")) {
             return new ModelAndView("redirect:/index-2.html");
         } else {
